@@ -1,4 +1,12 @@
-﻿using Autofac;
+﻿/**
+ * Both the Request Handler Library and the Unit of Work Library 
+ * are developed by Mohammad Hafijur Rahman
+ * This code is part of both the Request Handler Library and 
+ * Unit of Work Library
+ * https://github.com/mail4hafij/dotnetcore-startup-with-efcore
+ */
+
+using Autofac;
 using Common;
 using Common.Contract.Messaging;
 using Core.DB;
