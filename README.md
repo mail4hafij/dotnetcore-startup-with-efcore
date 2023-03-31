@@ -1,5 +1,5 @@
 # dotnetcore_startup_with_efcore
-This is startup project for dontet core 6. Following features are ready - 
+This is startup project for dotnet core 6. Following features are ready - 
 - Request Handler
 - Repository 
 - Logic
