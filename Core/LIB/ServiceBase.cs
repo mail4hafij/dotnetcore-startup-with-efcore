@@ -8,11 +8,11 @@ using Common.Contract;
 
 namespace Core.LIB
 {
-    public abstract class HandlerBase
+    public abstract class ServiceBase
     {
         private readonly IHandlerCaller _handlerCaller;
 
-        protected HandlerBase(IHandlerCaller handlerCaller)
+        protected ServiceBase(IHandlerCaller handlerCaller)
         {
             _handlerCaller = handlerCaller;
         }

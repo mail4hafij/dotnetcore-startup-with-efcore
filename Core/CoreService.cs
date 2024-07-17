@@ -4,7 +4,7 @@ using Core.LIB;
 
 namespace Core
 {
-    public class CoreService : HandlerBase, ICoreService
+    public class CoreService : ServiceBase, ICoreService
     {
         public CoreService(IHandlerCaller handlerCaller) : base(handlerCaller) { }
 
