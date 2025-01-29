@@ -1,12 +1,12 @@
 # dotnetcore_startup_with_efcore
 This is startup project for dotnet core 6. Following features are ready - 
-- Request Handler using Mediator pattern
+- Request Handler using Mediator pattern.
 - Unit Of Work pattern with Entity Framework Core.
-- Repository pattern
-- Logic for manaing multiple repositories
+- Repository pattern.
+- Logic for managing multiple repositories.
 - Linq quearyable extension to make paging and sorting easy.
 - Automapper for mapping DB models to contracts.
-- Autofac for dependency injection
+- Autofac for dependency injection.
 
 
 ## Conceptual Model
