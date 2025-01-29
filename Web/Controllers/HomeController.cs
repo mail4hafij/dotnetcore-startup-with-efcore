@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using web.Models;
+using Common.Contract.Messaging;
 using Common;
+using Common.Contract;
 
 namespace web.Controllers
 {
@@ -16,19 +18,26 @@ namespace web.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index([FromQuery] QueryParameters qp)
         {
-            var resp = _coreService.GetUser(new Common.Contract.Messaging.GetUserReq()
+            var resp = _coreService.GetUser(new GetUserReq()
             {
                 Email = "admin@efcore.com"
             });
 
-            _coreService.AddOrganization(new Common.Contract.Messaging.AddOrganizationReq()
+            _coreService.AddCar(new AddCarReq()
             {
                 UserId = resp.userContract.UserId,
-                OrganizationName = "Test organization"
+                Nameplate = "FREPLSTN"
             });
-            
+
+            var carResp = _coreService.GetAllCar(new GetAllCarReq()
+            {
+                Email = resp.userContract.Email,
+                QueryParameters = qp
+            });
+
+            ViewData["cars"] = carResp.carContracts;
             return View();
         }
 

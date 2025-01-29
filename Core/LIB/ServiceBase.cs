@@ -21,6 +21,5 @@ namespace Core.LIB
         {
             return _handlerCaller.Process<TReq, TResp>(req);
         }
-
     }
 }

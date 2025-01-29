@@ -16,7 +16,9 @@ namespace Core.DB.Model
         [MaxLength(500)]
         public string Password { get; set; }
 
-        public List<Organization> Organizations { get; set; }
+        public bool Deleted { get; set; } = false;
+
+        public List<Car> Cars { get; set; }
 
         public User(string email, string password)
         {

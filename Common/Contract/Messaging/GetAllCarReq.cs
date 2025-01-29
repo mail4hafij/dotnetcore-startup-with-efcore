@@ -2,7 +2,7 @@
 
 namespace Common.Contract.Messaging
 {
-    public class GetUserReq : Req
+    public class GetAllCarReq : Req
     {
         public string Email { get; set; }
     }

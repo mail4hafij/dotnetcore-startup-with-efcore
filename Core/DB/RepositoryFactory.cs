@@ -10,9 +10,9 @@ namespace Core.DB
 {
     public class RepositoryFactory : IRepositoryFactory
     {
-        public IOrganizationRepository CreateOrganizationRepository(IUnitOfWork unitOfWork)
+        public ICarRepository CreateCarRepository(IUnitOfWork unitOfWork)
         {
-            return new OrganizationRepository(unitOfWork);
+            return new CarRepository(unitOfWork);
         }
 
         public IUserRepository CreateUserRepository(IUnitOfWork unitOfWork)

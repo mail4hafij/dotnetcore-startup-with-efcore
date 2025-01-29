@@ -1,20 +1,19 @@
 ﻿using Common.Contract.Messaging;
 using Core.DB;
-using Core.DB.Mapper;
 using Core.LIB;
 
-namespace Core.Handler.Landlord
+namespace Core.Handler.User
 {
     public class GetUserHandler : RequestHandler<GetUserReq, GetUserResp>
     {
-        private readonly IUserMapper _userMapper;
+        private readonly IMapperFactory _mapperFactory;
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public GetUserHandler(IUserMapper userMapper,
+        public GetUserHandler(IMapperFactory mapperFactory,
             IRepositoryFactory repositoryFactory,
             IUnitOfWorkFactory unitOfWorkFactory, IResponseFactory responseFactory) : base(unitOfWorkFactory, responseFactory)
         {
-            _userMapper = userMapper;
+            _mapperFactory = mapperFactory;
             _repositoryFactory = repositoryFactory;
         }
 
@@ -26,10 +25,13 @@ namespace Core.Handler.Landlord
                 {
                     var userRepo = _repositoryFactory.CreateUserRepository(unitOfWork);
                     var user = userRepo.GetUser(req.Email);
-                    
+
+                    var carMapper = _mapperFactory.CreateCarMapper();
+                    var userMapper = _mapperFactory.CreateUserMapper(carMapper);
+
                     return new GetUserResp()
                     {
-                        userContract = _userMapper.Map(user)
+                        userContract = userMapper.Map(user)
                     };
                 }
             }

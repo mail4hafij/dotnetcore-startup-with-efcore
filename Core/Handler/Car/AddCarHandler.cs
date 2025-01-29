@@ -2,32 +2,32 @@
 using Core.DB;
 using Core.LIB;
 
-namespace Core.Handler.Landlord
+namespace Core.Handler.Car
 {
-    public class AddOrganizationHandler : RequestHandler<AddOrganizationReq, AddOrganizationResp>
+    public class AddCarHandler : RequestHandler<AddCarReq, AddCarResp>
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public AddOrganizationHandler(IRepositoryFactory repositoryFactory,
+        public AddCarHandler(IRepositoryFactory repositoryFactory,
             IUnitOfWorkFactory unitOfWorkFactory, IResponseFactory responseFactory) : base(unitOfWorkFactory, responseFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
 
-        public override AddOrganizationResp Process(AddOrganizationReq req)
+        public override AddCarResp Process(AddCarReq req)
         {
             try
             {
                 using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork())
                 {
                     var userRepo = _repositoryFactory.CreateUserRepository(unitOfWork);
-                    var orgRepo = _repositoryFactory.CreateOrganizationRepository(unitOfWork);
+                    var carRepo = _repositoryFactory.CreateCarRepository(unitOfWork);
 
                     var user = userRepo.GetUser(req.UserId);
-                    orgRepo.AddOrganization(user.UserId, req.OrganizationName);
+                    carRepo.AddCar(user.UserId, req.Nameplate);
                     unitOfWork.Commit();
 
-                    return new AddOrganizationResp();
+                    return new AddCarResp();
                 }
             }
             catch (Exception ex)

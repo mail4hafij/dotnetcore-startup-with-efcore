@@ -3,32 +3,34 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.DB.Model
 {
-    public class Organization
+    public class Car
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long OrganizationId { get; set; }
+        public long CarId { get; set; }
 
         [Required]
         public long UserId { get; set; }
 
         [Required]
         [MaxLength(500)]
-        public string Name { get; set; }
+        public string Nameplate { get; set; }
+
+        public bool Deleted { get; set; } = false;
 
         public User user { get; set; }
 
-        public Organization(long userId, string name)
+        public Car(long userId, string nameplate)
         {
             UserId = userId;
-            Name = name;
+            Nameplate = nameplate;
         }
 
         // Used for seed data
-        public Organization(long organizationId, long userId, string name)
+        public Car(long carId, long userId, string nameplate)
         {
-            OrganizationId = organizationId;           
+            CarId = carId;
             UserId = userId;
-            Name = name;
+            Nameplate = nameplate;
         }
     }
 }

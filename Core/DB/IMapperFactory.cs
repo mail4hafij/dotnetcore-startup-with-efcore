@@ -4,13 +4,13 @@
  * https://github.com/mail4hafij/dotnetcore-startup-with-efcore
  */
 
-using Core.DB.Repo;
+using Core.DB.Mapper;
 
 namespace Core.DB
 {
-    public interface IRepositoryFactory
+    public interface IMapperFactory
     {
-        public ICarRepository CreateCarRepository(IUnitOfWork unitOfWork);
-        public IUserRepository CreateUserRepository(IUnitOfWork unitOfWork);
+        public ICarMapper CreateCarMapper();
+        public IUserMapper CreateUserMapper(ICarMapper carMapper);
     }
 }

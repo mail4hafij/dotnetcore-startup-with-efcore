@@ -7,17 +7,13 @@
  */
 
 using Autofac;
+using AutoMapper;
 using Common;
 using Common.Contract.Messaging;
 using Core.DB;
-using Core.DB.Mapper;
-using Core.Handler.Landlord;
+using Core.Handler.Car;
+using Core.Handler.User;
 using Core.LIB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.IoC
 {
@@ -39,21 +35,30 @@ namespace Core.IoC
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
             builder.RegisterType<LogicFactory>().As<ILogicFactory>();
+            builder.RegisterType<MapperFactory>().As<IMapperFactory>();
+
+
+            // AutoMapper
+            builder.Register(c =>
+            {
+                // Create AutoMapper configuration
+                var configuration = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new MappingProfile()); // Add your AutoMapper profiles here
+                });
+
+                // Create IMapper instance using the configuration
+                return configuration.CreateMapper();
+            }).As<IMapper>().SingleInstance(); // Register as a singleton since IMapper is usually reused.
 
 
             // Integrations
 
 
-
-            // All mappers
-            builder.RegisterType<OrganizationMapper>().As<IOrganizationMapper>();
-            builder.RegisterType<UserMapper>().As<IUserMapper>();
-
-
-
             // All handlers
-            builder.RegisterType<AddOrganizationHandler>().As<RequestHandler<AddOrganizationReq, AddOrganizationResp>>();
-            builder.RegisterType<GetUserHandler>().As<RequestHandler<GetUserReq, GetUserResp>>();
+            builder.RegisterType<GetUserHandler>().As<RequestHandler<GetUserReq, GetUserResp>>(); 
+            builder.RegisterType<AddCarHandler>().As<RequestHandler<AddCarReq, AddCarResp>>();
+            builder.RegisterType<GetAllCarHandler>().As<RequestHandler<GetAllCarReq, GetAllCarResp>>();
         }
     }
 }

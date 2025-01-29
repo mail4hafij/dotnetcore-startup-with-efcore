@@ -41,7 +41,7 @@ namespace Core.DB
             modelBuilder.HasSequence<long>("PrimaryKeyGenerator").StartsAt(1000).IncrementsBy(1);
 
             modelBuilder.ApplyConfiguration(new UserBuilder());
-            modelBuilder.ApplyConfiguration(new OrganizationBuilder());
+            modelBuilder.ApplyConfiguration(new CarBuilder());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -59,6 +59,6 @@ namespace Core.DB
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }

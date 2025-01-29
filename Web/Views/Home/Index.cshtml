@@ -1,8 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    List<CarContract> cars = (List<CarContract>) ViewData["cars"];
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+
+    
+    @foreach (CarContract car in cars)
+    {
+        <div class="mb-2">@car.Nameplate</div>
+    }
+    
+    
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

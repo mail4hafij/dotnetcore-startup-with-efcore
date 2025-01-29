@@ -30,7 +30,7 @@ namespace Core.DB.Repo
         public User GetUser(long userId)
         {
             return (from user in _unitOfWork.Context.Users.
-                    Include(o => o.Organizations)
+                    Include(o => o.Cars)
                     where user.UserId == userId
                     select user).Single();
         }
@@ -38,7 +38,7 @@ namespace Core.DB.Repo
         public User GetUser(string email)
         {
             return (from user in _unitOfWork.Context.Users.
-                    Include(o => o.Organizations)
+                    Include(o => o.Cars)
                     where user.Email == email
                     select user).Single();
         }

@@ -9,6 +9,7 @@ namespace Core
         public CoreService(IHandlerCaller handlerCaller) : base(handlerCaller) { }
 
         public GetUserResp GetUser(GetUserReq req) => Process<GetUserReq, GetUserResp>(req);
-        public AddOrganizationResp AddOrganization(AddOrganizationReq req) => Process<AddOrganizationReq, AddOrganizationResp>(req);
+        public AddCarResp AddCar(AddCarReq req) => Process<AddCarReq, AddCarResp>(req);
+        public GetAllCarResp GetAllCar(GetAllCarReq req) => Process<GetAllCarReq, GetAllCarResp>(req);
     }
 }

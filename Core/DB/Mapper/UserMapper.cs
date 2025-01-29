@@ -5,30 +5,30 @@ namespace Core.DB.Mapper
 {
     public class UserMapper : IUserMapper
     {
-        private readonly IOrganizationMapper _organizationMapper;
+        private readonly ICarMapper _carMapper;
 
-        public UserMapper(IOrganizationMapper organizationMapper)
+        public UserMapper(ICarMapper carMapper)
         {
-            _organizationMapper = organizationMapper;
+            _carMapper = carMapper;
         }
 
-        public Common.Contract.Model.UserContract Map(User user)
+        public UserContract Map(User user)
         {
-            return new Common.Contract.Model.UserContract
+            return new UserContract
             {
                 UserId = user.UserId,
                 Email = user.Email,
-                OrganizationContracts = MapOrganizations(user.Organizations),
+                CarContracts = MapCars(user.Cars),
             };
         }
 
-        private List<OrganizationContract> MapOrganizations(List<Organization> organizations)
+        private List<CarContract> MapCars(List<Car> cars)
         {
-            List<OrganizationContract> result = new List<OrganizationContract>();
+            List<CarContract> result = new List<CarContract>();
 
-            foreach (Organization org in organizations)
+            foreach (Car car in cars)
             {
-                result.Add(_organizationMapper.Map(org));
+                result.Add(_carMapper.Map(car));
             }
 
             return result;
